@@ -47,14 +47,14 @@ function get_newfilename(){
 			if [ "$tmp_new" != "$tmp_ori" ]; then
 				l_newfilename="$l_prefix-$l_year-$l_month.$tmp_ori.${l_orifilename##*.}";
 				ret_get_newfilename_name=$l_newfilename;
-				ret_get_newfilename_type="md5 part equal";
+				ret_get_newfilename_type="md5 is part equality";
 				return 0;
 			fi
 		done
 
 		# 源文件和目的文件MD5一致，返回相同目的文件名
 		ret_get_newfilename_name="$l_prefix-$l_year-$l_month.$l_orisub_md5str.${l_orifilename##*.}";
-		ret_get_newfilename_type="md5 equal";
+		ret_get_newfilename_type="md5 is equality";
 		return 0;
 
 	else

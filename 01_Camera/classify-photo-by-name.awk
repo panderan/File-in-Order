@@ -12,6 +12,7 @@ Begin{
 	if (NR == 1) {
 		cmd_type=$1;
 		cmd_debug=$2;
+		cmd_debug2=$3;
 		next;
 	}
 	else {

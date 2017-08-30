@@ -7,6 +7,7 @@
 #   execute to actual cmd. another is "normal" which mean do actually what
 #   you want.
 
+function fc_mv() {
 filename=$1;
 target_dir=$2;
 cmd_debug=$3;
@@ -38,7 +39,7 @@ if [ -f ./$target_dir/$filename ]; then
 	# MD5值如果相同，则直接覆盖已存在文件。如果不相同，修改源文件名，以源文件名
 	# 加上MD5前8位值组成的新文件名移动保留两个文件。
 	if [ "$target_md5" = "$source_md5" ]; then
-		echo -e "${cmd_debug} - \033[32mMD5 equal!\033[0m $filename move to ./$target_dir/$filename";
+		echo -e "${cmd_debug} - \033[32mMD5 equality!\033[0m $filename move to ./$target_dir/$filename";
 		if [ "$cmd_debug" = "normal" ]; then
 			mv $filename ./$target_dir/$filename
 		fi
@@ -57,4 +58,5 @@ else
 fi
 
 exit 0;
+}
 

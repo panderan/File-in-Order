@@ -10,14 +10,18 @@
 #   execute to actual cmd. another is "normal" which mean do actually what
 #   you want.
 
+fc_rename_newfilename="";
+
+. ./_script/funcs.sh;
+#. ./funcs.sh;
+
+function fc_rename() {
+
 filename=$1;
 datestr=$2;
 rename_type=$3;
 cmd_debug=$4;
 is_cover="";
-
-. ./_script/funcs.sh;
-#. ./funcs.sh;
 
 # 检查参数
 if [ "$filename" = "" -o "$datestr" = "" -o "$rename_type" = "" -o "$cmd_debug" = "" ]; then
@@ -43,8 +47,8 @@ fi
 	newfilename=$ret_get_newfilename_name;
 	if [ "$cmd_debug" = "normal" ]; then
 		if [ -f $newfilename ]; then
-			mv $filename $newfilename;  # 两文件MD5相同，覆盖操作
-			is_cover="(cover origin file)"
+			# mv $filename $newfilename;  # 两文件MD5相同，不做操作
+			is_cover="(file name is not change)"
 		else
 			#
 			# rename not worked well in cygwin,
@@ -56,5 +60,7 @@ fi
 	fi
 	echo -e "$cmd_debug - $filename is rename to $newfilename $ret_get_newfilename_type $is_cover";
 
-exit 0;
+fc_rename_newfilename=$newfilename
+return 0;
+}
 

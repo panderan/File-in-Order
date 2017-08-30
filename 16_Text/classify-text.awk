@@ -11,6 +11,7 @@ Begin{
 	if (NR == 1) {
 		cmd_type=$1;
 		cmd_debug=$2;
+		cmd_debug2=$3;
 		next;
 	}
 	else {
@@ -33,20 +34,22 @@ Begin{
 	}
 
 	# Exclude formats which unsupported.
-	if (system("echo "filename" | grep -i -P '\\.txt$' > /dev/null")) {
+	if (system("echo "filename" | grep -i -P '\\.txt$|\\.md$' > /dev/null")) {
 		printf("\033[33mNot a text file\033[0m - "filename"\n");
 		next;
 	}
 
 	# Rename or move picture.
-	if (!system("echo "filename" | grep -i -P '\\d{4}-\\d{2}\\.\\w{8,32}\\.txt$' > /dev/null")) {
-		system("./_script/mv.sh "filename" ./"fileclass" "cmd_debug);
-	}
-	else {
+	#if (!system("echo "filename" | grep -i -P '\\d{4}-\\d{2}\\.\\w{8,32}\\.txt$' > /dev/null")) {
+	#	system("./_script/mv.sh "filename" ./"fileclass" "cmd_debug);
+	#}
+	#else {
 		name_prefix=filename;
 		gsub(".txt","",name_prefix); gsub(".TXT","",name_prefix);
-		system("./_script/rename.sh "filename" "datestr" "name_prefix" "cmd_debug);
-	}
+		gsub(".md","",name_prefix); gsub(".MD","",name_prefix);
+		#system("./_script/rename.sh "filename" "datestr" "name_prefix" "cmd_debug);
+		system("./_script/porter.sh "filename" "datestr" "name_prefix" ./"fileclass" "cmd_debug" "cmd_debug2);
+	#}
 }
 End {
 }

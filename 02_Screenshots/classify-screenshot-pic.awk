@@ -11,6 +11,7 @@ Begin{
 	if (NR == 1) {
 		cmd_type=$1;
 		cmd_debug=$2;
+		cmd_debug2=$3;
 		next;
 	}
 	else {
@@ -45,15 +46,15 @@ Begin{
 	}
 	
 	# Correct name, move it. 
-	if (!system("echo "filename" | grep -i -P '^screenshot-\\d{4}-\\d{2}.\\w{8,32}\\.jp[e]*g$' > /dev/null") ||
-		!system("echo "filename" | grep -i -P '^screenshot-\\d{4}-\\d{2}.\\w{8,32}\\.png$' > /dev/null")  ||
-		!system("echo "filename" | grep -i -P '^screenshot-\\d{4}-\\d{2}.\\w{8,32}\\.gif$' > /dev/null")) {
-		system("./_script/mv.sh "filename" ./"fileclass" "cmd_debug);
-		next;
-	}
+	#if (!system("echo "filename" | grep -i -P '^screenshot-\\d{4}-\\d{2}.\\w{8,32}\\.jp[e]*g$' > /dev/null") ||
+	#	!system("echo "filename" | grep -i -P '^screenshot-\\d{4}-\\d{2}.\\w{8,32}\\.png$' > /dev/null")  ||
+	#	!system("echo "filename" | grep -i -P '^screenshot-\\d{4}-\\d{2}.\\w{8,32}\\.gif$' > /dev/null")) {
+	#	system("./_script/mv.sh "filename" ./"fileclass" "cmd_debug);
+	#	next;
+	#}
 
-	# Rename screenshot picture`s name with correct format.
-	system("./_script/rename.sh "filename" "datestr" screenshot "cmd_debug);
+	# Carry file.
+	system("./_script/porter.sh "filename" "datestr" screenshot ./"fileclass" "cmd_debug" "cmd_debug2);
 	
 }
 End {

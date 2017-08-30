@@ -12,7 +12,7 @@ Begin{
 	if (NR == 1) {
 		cmd_type=$1;
 		cmd_debug=$2;
-		cmd_regstr=$3;
+		cmd_regstr=$4;
 		next;
 	}
 	else {

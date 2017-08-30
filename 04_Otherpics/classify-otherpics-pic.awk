@@ -11,6 +11,7 @@ Begin{
 	if (NR == 1) {
 		cmd_type=$1;
 		cmd_debug=$2;
+		cmd_debug2=$3;
 		next;
 	}
 	else {
@@ -38,13 +39,15 @@ Begin{
 		next;
 	}
 
-	# Rename or move picture.
-	if (!system("echo "filename" | grep -i -P '^otherpic-\\d{4}-\\d{2}\\.\\w{8,32}' > /dev/null")) {
-		system("./_script/mv.sh "filename" ./"fileclass" "cmd_debug);
-	}
-	else {
-		system("./_script/rename.sh "filename" "datestr" otherpic "cmd_debug);
-	}
+	# Rename and move picture.
+	system("./_script/porter.sh "filename" "datestr" otherpic ./"fileclass" "cmd_debug" "cmd_debug2);
+
+	#if (!system("echo "filename" | grep -i -P '^otherpic-\\d{4}-\\d{2}\\.\\w{8,32}' > /dev/null")) {
+	#	system("./_script/mv.sh "filename" ./"fileclass" "cmd_debug);
+	#}
+	#else {
+	#	system("./_script/rename.sh "filename" "datestr" otherpic "cmd_debug);
+	#}
 }
 End {
 }

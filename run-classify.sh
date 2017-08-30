@@ -12,7 +12,10 @@ function show_help() {
 	echo "  -f, --file    分类其他类型文件，需指定参数'word'、'excel'、'pdf'、'music'、   "
 	echo "                'text'、'compressionfile'和'ppt'其中的一个。                    "
 	echo "      --regstr  指定正则表达式，需与 --pic createdtime 一起使用。               "
-	echo "      --debug   只打印输出日志，而不实际执行命令。                              "
+	echo "      --test    只打印输出日志，而不实际执行命令。对于需要先改名再分类的文件则该"
+	echo "                选项只debug改名部分。                                           "
+	echo "      --test2   只打印输出日志，而不实际执行命令。对于需要先改名再分类的文件则该"
+	echo "                选项只debug分类移动部分。                                       "
 	echo "  -h, --help    显示帮助信息                                                    "
 	echo "                                                                                "
 }
@@ -47,22 +50,23 @@ function corrent_filename() {
 		l_filename=${l_filename//,/_};
 		
 	if [ ! "$l_item" = "$l_filename" ]; then
-		echo "$cmd_debug : filename $l_item change to $l_filename"
-		if [ "$cmd_debug" = "normal" ]; then
+		echo "$cmd_debug_test1 : filename $l_item change to $l_filename"
+		if [ "$cmd_debug_test1" = "normal" ]; then
 			mv $l_item $l_filename;
 		fi
 	else
-		echo "$cmd_debug : filename $l_item do not need change"
+		echo "$cmd_debug_test1 : filename $l_item do not need change"
 	fi
 
 	done
 	IFS=$l_IFS_OLD
 }
 
-ARG_CMD=`getopt -o ep:f:h -l file:,pic:,regstr:,debug,help -n "run-classify.sh" -- "$@"`;
+ARG_CMD=`getopt -o ep:f:h -l file:,pic:,regstr:,test,test2,help -n "run-classify.sh" -- "$@"`;
 eval set -- "$ARG_CMD"
 
-cmd_debug="";
+cmd_debug_test1="";
+cmd_debug_test2="";
 cmd_regstr="";
 file_type="";
 file_sub_type="";
@@ -96,8 +100,12 @@ do
 			cmd_regstr=$2;
 			shift 2;
 			;;
-		--debug)
-			cmd_debug="debug";
+		--test)
+			cmd_debug_test1="debug";
+			shift;
+			;;
+		--test2)
+			cmd_debug_test2="debug";
 			shift;
 			;;
 		-e)
@@ -129,12 +137,15 @@ if [ "$file_type" = "pic" -a "$file_sub_type" = "createdtime" -a "$cmd_regstr" =
 	exit 1;
 fi
 
-if [ "$cmd_debug" = "" ]; then 
-	cmd_debug="normal";
+if [ "$cmd_debug_test1" = "" ]; then 
+	cmd_debug_test1="normal";
+fi
+if [ "$cmd_debug_test2" = "" ]; then 
+	cmd_debug_test2="normal";
 fi
 
-echo $file_type - $file_sub_type - $cmd_debug;
-echo $file_sub_type $cmd_debug $cmd_regstr> ./pics.data;
+echo $file_type - $file_sub_type - $cmd_debug_test1 - $cmd_debug_test2;
+echo $file_sub_type $cmd_debug_test1 $cmd_debug_test2 $cmd_regstr> ./pics.data;
 ls -l --time-style long-iso | sed -r "/^total [0-9]*$|\
 ^d[ 0-9a-zA-Z\:\-]*01_Camera$|\
 ^d[ 0-9a-zA-Z\:\-]*02_Screenshots$|\
@@ -205,7 +216,7 @@ case "$file_type" in
 		#rename 's/ |`|@|\$|%|#|{|}//g' *;
 		#rename 's/\(|\)|\[|\]|\+|\&|,/_/g' *;
 		#rename 's/'\''/_/g' *;
-		corrent_filename "." "$cmd_debug"
+		corrent_filename "." "$cmd_debug_test1"
 		;;
 	*)
 		;;

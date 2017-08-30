@@ -11,6 +11,7 @@ Begin{
 	if (NR == 1) {
 		cmd_type=$1;
 		cmd_debug=$2;
+		cmd_debug2=$3;
 		next;
 	}
 	else {
@@ -39,17 +40,18 @@ Begin{
 	}
 
 	# Rename or move picture.
-	if (!system("echo "filename" | grep -i -P '\\d{4}-\\d{2}\\.\\w{8,32}\\.rar$|\\d{4}-\\d{2}\\.\\w{8,32}\\.zip$|\\d{4}-\\d{2}\\.\\w{8,32}\\.7z$|\\d{4}-\\d{2}\\.\\w{8,32}\\.tar$' > /dev/null")) {
-		system("./_script/mv.sh "filename" ./"fileclass" "cmd_debug);
-	}
-	else {
+	#if (!system("echo "filename" | grep -i -P '\\d{4}-\\d{2}\\.\\w{8,32}\\.rar$|\\d{4}-\\d{2}\\.\\w{8,32}\\.zip$|\\d{4}-\\d{2}\\.\\w{8,32}\\.7z$|\\d{4}-\\d{2}\\.\\w{8,32}\\.tar$' > /dev/null")) {
+	#	system("./_script/mv.sh "filename" ./"fileclass" "cmd_debug);
+	#}
+	#else {
 		name_prefix=filename;
 		gsub(".rar","",name_prefix); gsub(".RAR","",name_prefix);
 		gsub(".zip","",name_prefix); gsub(".ZIP","",name_prefix);
 		gsub(".7z","",name_prefix);  gsub(".7Z","",name_prefix);
 		gsub(".tar","",name_prefix); gsub(".TAR","",name_prefix);
-		system("./_script/rename.sh "filename" "datestr" "name_prefix" "cmd_debug);
-	}
+		#system("./_script/rename.sh "filename" "datestr" "name_prefix" "cmd_debug);
+		system("./_script/porter.sh "filename" "datestr" "name_prefix" ./"fileclass" "cmd_debug" "cmd_debug2);
+	#}
 }
 End {
 }

@@ -11,6 +11,7 @@ Begin{
 	if (NR == 1) {
 		cmd_type=$1;
 		cmd_debug=$2;
+		cmd_debug2=$3;
 		next;
 	}
 	else {
@@ -39,16 +40,15 @@ Begin{
 	}
 
 	# Rename or move picture.
-	if (!system("echo "filename" | grep -i -P '\\d{4}-\\d{2}\\.\\w{8,32}\\.ppt$|\\d{4}-\\d{2}\\.\\w{8,32}\\.pptx$' > /dev/null")) {
-		system("./_script/mv.sh "filename" ./"fileclass" "cmd_debug);
-	}
-	else {
+	#if (!system("echo "filename" | grep -i -P '\\d{4}-\\d{2}\\.\\w{8,32}\\.ppt$|\\d{4}-\\d{2}\\.\\w{8,32}\\.pptx$' > /dev/null")) {
+	#	system("./_script/mv.sh "filename" ./"fileclass" "cmd_debug);
+	#}
+	#else {
 		name_prefix=filename;
 		gsub(".pptx","",name_prefix); gsub(".PPTX","",name_prefix);
 		gsub(".ppt","",name_prefix);  gsub(".PPT","",name_prefix);
-		system("./_script/rename.sh "filename" "datestr" "name_prefix" "cmd_debug);
-	}
-}
+	#	system("./_script/rename.sh "filename" "datestr" "name_prefix" "cmd_debug);
+		system("./_script/porter.sh "filename" "datestr" "name_prefix" ./"fileclass" "cmd_debug" "cmd_debug2)
 End {
 }
 
