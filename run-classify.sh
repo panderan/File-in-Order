@@ -59,7 +59,7 @@ function corrent_filename() {
 	IFS=$l_IFS_OLD
 }
 
-ARG_CMD=`getopt -o epfh -l file:,pic:,regstr:,debug,help -n "run-classify.sh" -- "$@"`;
+ARG_CMD=`getopt -o ep:f:h -l file:,pic:,regstr:,debug,help -n "run-classify.sh" -- "$@"`;
 eval set -- "$ARG_CMD"
 
 cmd_debug="";
