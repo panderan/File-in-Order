@@ -68,7 +68,7 @@ Begin{
 		}
 	}
 	
-	system("./_script/mv.sh "filename" "dir_name" "cmd_debug);
+	system("./_script/fc_mv.sh "filename" "dir_name" "cmd_debug);
 }
 End {
 }
