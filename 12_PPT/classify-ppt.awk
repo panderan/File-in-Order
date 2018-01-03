@@ -49,6 +49,7 @@ Begin{
 		gsub(".ppt","",name_prefix);  gsub(".PPT","",name_prefix);
 	#	system("./_script/rename.sh "filename" "datestr" "name_prefix" "cmd_debug);
 		system("./_script/porter.sh "filename" "datestr" "name_prefix" ./"fileclass" "cmd_debug" "cmd_debug2)
+}
 End {
 }
 
