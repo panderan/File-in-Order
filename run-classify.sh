@@ -159,7 +159,7 @@ ls -l --time-style long-iso | sed -r "/^total [0-9]*$|\
 ^d[ 0-9a-zA-Z\:\-]*Archives$|\
 ^d[ 0-9a-zA-Z\:\-]*Texts|98_Manual$|\
 ^d[ 0-9a-zA-Z\:\-]*99_Unclassification$|\
-^d[ 0-9a-zA-Z\:\-]*_script$|\
+^d[ 0-9a-zA-Z\:\-]*.script$|\
 run-classify.sh$|\
 pics.data$/d" >> ./pics.data;
 
@@ -167,19 +167,19 @@ case "$file_type" in
 	pic)
 		case $file_sub_type in 
 			name)
-				awk -f ./Camera/classify-photo-by-name.awk ./pics.data;
+				awk -f ./Images/Camera/classify-photo-by-name.awk ./pics.data;
 				;;
 			createdtime)
-				awk -f ./Camera/classify-photo-by-createdtime.awk ./pics.data;
+				awk -f ./Images/Camera/classify-photo-by-createdtime.awk ./pics.data;
 				;;
 			wechat)
-				awk -f ./WeiXin/classify-wechat-pic.awk ./pics.data;
+				awk -f ./Images/WeiXin/classify-wechat-pic.awk ./pics.data;
 				;;
 			screenshot)
-				awk -f ./Screenshots/classify-screenshot-pic.awk ./pics.data;
+				awk -f ./Images/Screenshots/classify-screenshot-pic.awk ./pics.data;
 				;;
 			otherpic)
-				awk -f ./OtherPics/classify-otherpics-pic.awk ./pics.data;
+				awk -f ./Images/OtherPics/classify-otherpics-pic.awk ./pics.data;
 				;;
 			*)
 				;;
@@ -188,16 +188,16 @@ case "$file_type" in
 	file)
 		case $file_sub_type in
 			word)
-				awk -f ./Word/classify-word.awk ./pics.data;
+				awk -f ./Offices/Word/classify-word.awk ./pics.data;
 				;;
 			excel)
-				awk -f ./Excel/classify-excel.awk ./pics.data;
+				awk -f ./Offices/Excel/classify-excel.awk ./pics.data;
 				;;
 			ppt)
-				awk -f ./PPT/classify-ppt.awk ./pics.data;
+				awk -f ./Offices/PPT/classify-ppt.awk ./pics.data;
 				;;
 			pdf)
-				awk -f ./PDF/classify-pdf.awk ./pics.data;
+				awk -f ./Offices/PDF/classify-pdf.awk ./pics.data;
 				;;
 			music)
 				awk -f ./Music/classify-music.awk ./pics.data;

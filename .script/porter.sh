@@ -1,7 +1,7 @@
 #!/bin/bash
 
-. ./_script/rename.sh
-. ./_script/mv.sh
+. ./.script/rename.sh
+. ./.script/mv.sh
 
 filename=$1;
 datestr=$2;

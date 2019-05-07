@@ -61,14 +61,14 @@ Begin{
 	}
 	
 	# Verify the existence of target directory 
-	dir_name="./"fileclass"/"year"年"month"月";
+	dir_name="./Images/"fileclass"/"year"年"month"月";
 	if (system("test -d ./"dir_name)) {
 		if (cmd_debug == "normal") {
 			system("mkdir ./"dir_name);
 		}
 	}
 	
-	system("./_script/fc_mv.sh "filename" "dir_name" "cmd_debug);
+	system("./.script/fc_mv.sh "filename" "dir_name" "cmd_debug);
 }
 End {
 }

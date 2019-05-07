@@ -12,7 +12,7 @@
 
 fc_rename_newfilename="";
 
-. ./_script/funcs.sh;
+. ./.script/funcs.sh;
 #. ./funcs.sh;
 
 function fc_rename() {

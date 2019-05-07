@@ -41,14 +41,14 @@ Begin{
 
 	# Rename or move picture.
 	#if (!system("echo "filename" | grep -i -P '\\d{4}-\\d{2}\\.\\w{8,32}\\.xls$|\\d{4}-\\d{2}\\.\\w{8,32}\\.xlsx$' > /dev/null")) {
-	#	system("./_script/mv.sh "filename" ./"fileclass" "cmd_debug);
+	#	system("./.script/mv.sh "filename" ./"fileclass" "cmd_debug);
 	#}
 	#else {
 		name_prefix=filename;
 		gsub(".xlsx","",name_prefix); gsub(".XLSX","",name_prefix);
 		gsub(".xls","",name_prefix);  gsub(".XLS","",name_prefix);
-		#system("./_script/rename.sh "filename" "datestr" "name_prefix" "cmd_debug);
-		system("./_script/porter.sh "filename" "datestr" "name_prefix" ./"fileclass" "cmd_debug" "cmd_debug2);
+		#system("./.script/rename.sh "filename" "datestr" "name_prefix" "cmd_debug);
+		system("./.script/porter.sh "filename" "datestr" "name_prefix" ./Offices/"fileclass" "cmd_debug" "cmd_debug2);
 	#}
 }
 End {

@@ -49,12 +49,12 @@ Begin{
 	#if (!system("echo "filename" | grep -i -P '^screenshot-\\d{4}-\\d{2}.\\w{8,32}\\.jp[e]*g$' > /dev/null") ||
 	#	!system("echo "filename" | grep -i -P '^screenshot-\\d{4}-\\d{2}.\\w{8,32}\\.png$' > /dev/null")  ||
 	#	!system("echo "filename" | grep -i -P '^screenshot-\\d{4}-\\d{2}.\\w{8,32}\\.gif$' > /dev/null")) {
-	#	system("./_script/mv.sh "filename" ./"fileclass" "cmd_debug);
+	#	system("./.script/mv.sh "filename" ./"fileclass" "cmd_debug);
 	#	next;
 	#}
 
 	# Carry file.
-	system("./_script/porter.sh "filename" "datestr" screenshot ./"fileclass" "cmd_debug" "cmd_debug2);
+	system("./.script/porter.sh "filename" "datestr" screenshot ./Images/"fileclass" "cmd_debug" "cmd_debug2);
 	
 }
 End {

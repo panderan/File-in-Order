@@ -47,23 +47,23 @@ Begin{
 
 	# Correct name, move it. 
 	#if (!system("echo "filename" | grep -i -P '^microMsg-\\d{4}-\\d{2}\\.\\w{8,32}\\.jp[e]?g$' > /dev/null")) {
-	#	system("./_script/mv.sh "filename" ./"fileclass" "cmd_debug);
+	#	system("./.script/mv.sh "filename" ./"fileclass" "cmd_debug);
 	#	next;
 	#}
 	#if (!system("echo "filename" | grep -i -P '^mmexport-\\d{4}-\\d{2}\\.\\w{8,32}\\.jp[e]?g$|^mmexport-\\d{4}-\\d{2}\\.\\w{8,32}\\.gif$' > /dev/null")) {
-	#	system("./_script/mv.sh "filename" ./"fileclass" "cmd_debug);
+	#	system("./.script/mv.sh "filename" ./"fileclass" "cmd_debug);
 	#	next;
 	#}
 	
 	# Carry file
 	if (!system("echo "filename" | grep -i -P '^microMsg[a-z0-9A-Z._\\-]*\\.jp[e]?g$' > /dev/null")) {
-		system("./_script/porter.sh "filename" "datestr" microMsg ./"fileclass" "cmd_debug" "cmd_debug2);
+		system("./.script/porter.sh "filename" "datestr" microMsg ./Images/"fileclass" "cmd_debug" "cmd_debug2);
 	}
 	else if (!system("echo "filename" | grep -i -P '^mmexport[a-z0-9A-Z._\\-]*\\.jp[e]?g$|^mmexport[a-z0-9A-Z._\\-]*\\.gif$' > /dev/null")) {
-		system("./_script/porter.sh "filename" "datestr" mmexport ./"fileclass" "cmd_debug" "cmd_debug2);
+		system("./.script/porter.sh "filename" "datestr" mmexport ./Images/"fileclass" "cmd_debug" "cmd_debug2);
 	}
 	else if (!system("echo "filename" | grep -i -P '^wx_camera[a-z0-9A-Z._\\-]*\\.mp4$' > /dev/null")) {
-		system("./_script/porter.sh "filename" "datestr" wx_camera ./"fileclass" "cmd_debug" "cmd_debug2);
+		system("./.script/porter.sh "filename" "datestr" wx_camera ./Images/"fileclass" "cmd_debug" "cmd_debug2);
 	}
 	else {
 		printf("Not Match - "filename"\n");

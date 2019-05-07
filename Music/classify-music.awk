@@ -41,15 +41,15 @@ Begin{
 
 	# Rename or move picture.
 	#if (!system("echo "filename" | grep -i -P '\\d{4}-\\d{2}\\.\\w{8,32}\\.mp3$|\\d{4}-\\d{2}\\.\\w{8,32}\\.wma$|\\d{4}-\\d{2}\\.\\w{8,32}\\.m4a$' > /dev/null")) {
-	#	system("./_script/mv.sh "filename" ./"fileclass" "cmd_debug);
+	#	system("./.script/mv.sh "filename" ./"fileclass" "cmd_debug);
 	#}
 	#else {
 		name_prefix=filename;
 		gsub(".mp3","",name_prefix); gsub(".MP3","",name_prefix);
 		gsub(".wma","",name_prefix); gsub(".WMA","",name_prefix);
 		gsub(".m4a","",name_prefix); gsub(".M4A","",name_prefix);
-		#system("./_script/rename.sh "filename" "datestr" "name_prefix" "cmd_debug);
-		system("./_script/porter.sh "filename" "datestr" "name_prefix" ./"fileclass" "cmd_debug" "cmd_debug2);
+		#system("./.script/rename.sh "filename" "datestr" "name_prefix" "cmd_debug);
+		system("./.script/porter.sh "filename" "datestr" "name_prefix" ./"fileclass" "cmd_debug" "cmd_debug2);
 	#}
 }
 End {
