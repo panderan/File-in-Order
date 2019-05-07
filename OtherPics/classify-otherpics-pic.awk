@@ -5,7 +5,7 @@ Begin{
 {
 	datestr=$6;
 	filename=$8;
-	fileclass="04_OtherPics";
+	fileclass="OtherPics";
 
 	# Verify the parameters
 	if (NR == 1) {

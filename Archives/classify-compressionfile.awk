@@ -5,7 +5,7 @@ Begin{
 {
 	datestr=$6;
 	filename=$8;
-	fileclass="15_CompressionFiles";
+	fileclass="Archives";
 
 	# Verify the parameters
 	if (NR == 1) {

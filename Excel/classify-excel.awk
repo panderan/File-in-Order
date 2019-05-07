@@ -5,7 +5,7 @@ Begin{
 {
 	datestr=$6;
 	filename=$8;
-	fileclass="14_Music";
+	fileclass="Excel";
 
 	# Verify the parameters
 	if (NR == 1) {
@@ -15,8 +15,8 @@ Begin{
 		next;
 	}
 	else {
-		if (cmd_type != "music") {
-			printf("\033[31mError Cmd\033[0m, need \"music\" specified.\n");
+		if (cmd_type != "excel") {
+			printf("\033[31mError Cmd\033[0m, need \"excel\" specified.\n");
 			exit;
 		}
 	}
@@ -34,20 +34,19 @@ Begin{
 	}
 
 	# Exclude formats which unsupported.
-	if (system("echo "filename" | grep -i -P '\\.mp3$|\\.wma$|\\.m4a$' > /dev/null")) {
-		printf("\033[33mNot a Music file\033[0m - "filename"\n");
+	if (system("echo "filename" | grep -i -P '\\.xls$|\\.xlsx$' > /dev/null")) {
+		printf("\033[33mNot a Excel file\033[0m - "filename"\n");
 		next;
 	}
 
 	# Rename or move picture.
-	#if (!system("echo "filename" | grep -i -P '\\d{4}-\\d{2}\\.\\w{8,32}\\.mp3$|\\d{4}-\\d{2}\\.\\w{8,32}\\.wma$|\\d{4}-\\d{2}\\.\\w{8,32}\\.m4a$' > /dev/null")) {
+	#if (!system("echo "filename" | grep -i -P '\\d{4}-\\d{2}\\.\\w{8,32}\\.xls$|\\d{4}-\\d{2}\\.\\w{8,32}\\.xlsx$' > /dev/null")) {
 	#	system("./_script/mv.sh "filename" ./"fileclass" "cmd_debug);
 	#}
 	#else {
 		name_prefix=filename;
-		gsub(".mp3","",name_prefix); gsub(".MP3","",name_prefix);
-		gsub(".wma","",name_prefix); gsub(".WMA","",name_prefix);
-		gsub(".m4a","",name_prefix); gsub(".M4A","",name_prefix);
+		gsub(".xlsx","",name_prefix); gsub(".XLSX","",name_prefix);
+		gsub(".xls","",name_prefix);  gsub(".XLS","",name_prefix);
 		#system("./_script/rename.sh "filename" "datestr" "name_prefix" "cmd_debug);
 		system("./_script/porter.sh "filename" "datestr" "name_prefix" ./"fileclass" "cmd_debug" "cmd_debug2);
 	#}

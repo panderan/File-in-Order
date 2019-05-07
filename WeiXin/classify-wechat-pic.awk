@@ -5,7 +5,7 @@ Begin{
 {
 	datestr=$6;
 	filename=$8;
-	fileclass="03_WeiXin";
+	fileclass="WeiXin";
 
 	# Verify the parameters
 	if (NR == 1) {

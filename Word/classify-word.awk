@@ -5,7 +5,7 @@ Begin{
 {
 	datestr=$6;
 	filename=$8;
-	fileclass="10_Word";
+	fileclass="Word";
 
 	# Verify the parameters
 	if (NR == 1) {

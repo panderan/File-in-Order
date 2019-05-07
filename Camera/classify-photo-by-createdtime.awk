@@ -6,7 +6,7 @@ Begin{
 	year="";
 	month="";
 	filename=$8;
-	fileclass="01_Camera";
+	fileclass="Camera";
 
 	# Verify the parameters
 	if (NR == 1) {

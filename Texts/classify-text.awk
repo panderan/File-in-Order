@@ -5,7 +5,7 @@ Begin{
 {
 	datestr=$6;
 	filename=$8;
-	fileclass="16_Text";
+	fileclass="Texts";
 
 	# Verify the parameters
 	if (NR == 1) {

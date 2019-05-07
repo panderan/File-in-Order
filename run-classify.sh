@@ -147,17 +147,17 @@ fi
 echo $file_type - $file_sub_type - $cmd_debug_test1 - $cmd_debug_test2;
 echo $file_sub_type $cmd_debug_test1 $cmd_debug_test2 $cmd_regstr> ./pics.data;
 ls -l --time-style long-iso | sed -r "/^total [0-9]*$|\
-^d[ 0-9a-zA-Z\:\-]*01_Camera$|\
-^d[ 0-9a-zA-Z\:\-]*02_Screenshots$|\
-^d[ 0-9a-zA-Z\:\-]*03_WeiXin$|\
-^d[ 0-9a-zA-Z\:\-]*04_Otherpics$|\
-^d[ 0-9a-zA-Z\:\-]*10_Word$|\
-^d[ 0-9a-zA-Z\:\-]*11_Excel$|\
-^d[ 0-9a-zA-Z\:\-]*12_PPT$|\
-^d[ 0-9a-zA-Z\:\-]*13_PDF$|\
-^d[ 0-9a-zA-Z\:\-]*14_Music$|\
-^d[ 0-9a-zA-Z\:\-]*15_CompressionFiles$|\
-^d[ 0-9a-zA-Z\:\-]*16_Text|98_Manual$|\
+^d[ 0-9a-zA-Z\:\-]*Camera$|\
+^d[ 0-9a-zA-Z\:\-]*Screenshots$|\
+^d[ 0-9a-zA-Z\:\-]*WeiXin$|\
+^d[ 0-9a-zA-Z\:\-]*Otherpics$|\
+^d[ 0-9a-zA-Z\:\-]*Word$|\
+^d[ 0-9a-zA-Z\:\-]*Excel$|\
+^d[ 0-9a-zA-Z\:\-]*PPT$|\
+^d[ 0-9a-zA-Z\:\-]*PDF$|\
+^d[ 0-9a-zA-Z\:\-]*Music$|\
+^d[ 0-9a-zA-Z\:\-]*Archives$|\
+^d[ 0-9a-zA-Z\:\-]*Texts|98_Manual$|\
 ^d[ 0-9a-zA-Z\:\-]*99_Unclassification$|\
 ^d[ 0-9a-zA-Z\:\-]*_script$|\
 run-classify.sh$|\
@@ -167,19 +167,19 @@ case "$file_type" in
 	pic)
 		case $file_sub_type in 
 			name)
-				awk -f ./01_Camera/classify-photo-by-name.awk ./pics.data;
+				awk -f ./Camera/classify-photo-by-name.awk ./pics.data;
 				;;
 			createdtime)
-				awk -f ./01_Camera/classify-photo-by-createdtime.awk ./pics.data;
+				awk -f ./Camera/classify-photo-by-createdtime.awk ./pics.data;
 				;;
 			wechat)
-				awk -f ./03_WeiXin/classify-wechat-pic.awk ./pics.data;
+				awk -f ./WeiXin/classify-wechat-pic.awk ./pics.data;
 				;;
 			screenshot)
-				awk -f ./02_Screenshots/classify-screenshot-pic.awk ./pics.data;
+				awk -f ./Screenshots/classify-screenshot-pic.awk ./pics.data;
 				;;
 			otherpic)
-				awk -f ./04_OtherPics/classify-otherpics-pic.awk ./pics.data;
+				awk -f ./OtherPics/classify-otherpics-pic.awk ./pics.data;
 				;;
 			*)
 				;;
@@ -188,25 +188,25 @@ case "$file_type" in
 	file)
 		case $file_sub_type in
 			word)
-				awk -f ./10_Word/classify-word.awk ./pics.data;
+				awk -f ./Word/classify-word.awk ./pics.data;
 				;;
 			excel)
-				awk -f ./11_Excel/classify-excel.awk ./pics.data;
+				awk -f ./Excel/classify-excel.awk ./pics.data;
 				;;
 			ppt)
-				awk -f ./12_PPT/classify-ppt.awk ./pics.data;
+				awk -f ./PPT/classify-ppt.awk ./pics.data;
 				;;
 			pdf)
-				awk -f ./13_PDF/classify-pdf.awk ./pics.data;
+				awk -f ./PDF/classify-pdf.awk ./pics.data;
 				;;
 			music)
-				awk -f ./14_Music/classify-music.awk ./pics.data;
+				awk -f ./Music/classify-music.awk ./pics.data;
 				;;
 			compressionfile)
-				awk -f ./15_CompressionFiles/classify-compressionfile.awk ./pics.data;
+				awk -f ./Archives/classify-compressionfile.awk ./pics.data;
 				;;
 			text)
-				awk -f ./16_Text/classify-text.awk ./pics.data;
+				awk -f ./Texts/classify-text.awk ./pics.data;
 				;;
 			*)
 				;;
