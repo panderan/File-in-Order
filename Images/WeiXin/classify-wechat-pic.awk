@@ -56,13 +56,13 @@ Begin{
 	#}
 	
 	# Carry file
-	if (!system("echo "filename" | grep -i -P '^microMsg[a-z0-9A-Z._\\-]*\\.jp[e]?g$' > /dev/null")) {
+	if (!system("echo "filename" | grep -i -P '^microMsg[a-z0-9A-Z._\\-]*' > /dev/null")) {
 		system("./.script/porter.sh "filename" "datestr" microMsg ./Images/"fileclass" "cmd_debug" "cmd_debug2);
 	}
 	else if (!system("echo "filename" | grep -i -P '^mmexport[a-z0-9A-Z._\\-]*\\.jp[e]?g$|^mmexport[a-z0-9A-Z._\\-]*\\.gif$' > /dev/null")) {
 		system("./.script/porter.sh "filename" "datestr" mmexport ./Images/"fileclass" "cmd_debug" "cmd_debug2);
 	}
-	else if (!system("echo "filename" | grep -i -P '^wx_camera[a-z0-9A-Z._\\-]*\\.mp4$' > /dev/null")) {
+	else if (!system("echo "filename" | grep -i -P '^wx_camera[a-z0-9A-Z._\\-]*' > /dev/null")) {
 		system("./.script/porter.sh "filename" "datestr" wx_camera ./Images/"fileclass" "cmd_debug" "cmd_debug2);
 	}
 	else {

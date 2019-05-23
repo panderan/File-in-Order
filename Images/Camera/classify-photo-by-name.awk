@@ -70,7 +70,7 @@ Begin{
 	}
 
 	# Filename type 5: "MYXJ_20140826_123456"
-	else if (!system("echo "filename" | grep -i -P '^MYXJ_\\d{8}_\\d{6}' > /dev/null")) {
+	else if (!system("echo "filename" | grep -i -P '^MYXJ_\\d{8}_?\\d{6}' > /dev/null")) {
 		year=substr(filename,6,4);
 		month=substr(filename,10,2);
 		#printf("\033[32m"fileclass"\033[0m:"filename", "year"年"month"月\n");
@@ -98,7 +98,7 @@ Begin{
 	}
 
 	# Filename type 9: "MTXX_20160101123456.JPG"
-	else if (!system("echo "filename" | grep -i -P '^MTXX_\\d{14}\\.jpg' > /dev/null")) {
+	else if (!system("echo "filename" | grep -i -P '^MTXX_\\d{14}' > /dev/null")) {
 		year=substr(filename,6,4);
 		month=substr(filename,10,2);
 		#printf("\033[32m"fileclass"\033[0m:"filename", "year"年"month"月\n");
