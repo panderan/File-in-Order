@@ -16,7 +16,7 @@ Begin{
 	}
 	else {
 		if (cmd_type != "screenshot") {
-			printf("\033[31mError Cmd\033[0m, need \"wechat\" specified.\n");
+			printf("\033[31mError Cmd\033[0m, need \"screenshot\" specified.\n");
 			exit;
 		}
 	}
