@@ -144,6 +144,7 @@ if [ "$cmd_debug_test2" = "" ]; then
 	cmd_debug_test2="normal";
 fi
 
+filelist=`tempfile -p fio`
 echo $file_type - $file_sub_type - $cmd_debug_test1 - $cmd_debug_test2;
 echo $file_sub_type $cmd_debug_test1 $cmd_debug_test2 $cmd_regstr> ./pics.data;
 ls -l --time-style long-iso | sed -r "/^total [0-9]*$|\
@@ -157,7 +158,7 @@ ls -l --time-style long-iso | sed -r "/^total [0-9]*$|\
 ^d[ 0-9a-zA-Z\:\-]*.git$|\
 ^d[ 0-9a-zA-Z\:\-]*.script$|\
 run-classify.sh$|\
-pics.data$/d" >> ./pics.data;
+pics.data$/d" >> ${filelist};
 
 case "$file_type" in
 	pic)
@@ -218,8 +219,8 @@ case "$file_type" in
 		;;
 esac
 
-if [ -f ./pics.data ]; then
-	rm ./pics.data
+if [ -f ${filelist} ]; then
+	rm ${filelist}
 fi
 
 exit 0;
