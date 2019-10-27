@@ -147,18 +147,14 @@ fi
 echo $file_type - $file_sub_type - $cmd_debug_test1 - $cmd_debug_test2;
 echo $file_sub_type $cmd_debug_test1 $cmd_debug_test2 $cmd_regstr> ./pics.data;
 ls -l --time-style long-iso | sed -r "/^total [0-9]*$|\
-^d[ 0-9a-zA-Z\:\-]*Camera$|\
-^d[ 0-9a-zA-Z\:\-]*Screenshots$|\
-^d[ 0-9a-zA-Z\:\-]*WeiXin$|\
-^d[ 0-9a-zA-Z\:\-]*Otherpics$|\
-^d[ 0-9a-zA-Z\:\-]*Word$|\
-^d[ 0-9a-zA-Z\:\-]*Excel$|\
-^d[ 0-9a-zA-Z\:\-]*PPT$|\
-^d[ 0-9a-zA-Z\:\-]*PDF$|\
-^d[ 0-9a-zA-Z\:\-]*Music$|\
 ^d[ 0-9a-zA-Z\:\-]*Archives$|\
-^d[ 0-9a-zA-Z\:\-]*Texts|98_Manual$|\
-^d[ 0-9a-zA-Z\:\-]*99_Unclassification$|\
+^d[ 0-9a-zA-Z\:\-]*Images$|\
+^d[ 0-9a-zA-Z\:\-]*Manual$|\
+^d[ 0-9a-zA-Z\:\-]*Music$|\
+^d[ 0-9a-zA-Z\:\-]*Offices$|\
+^d[ 0-9a-zA-Z\:\-]*Texts$|\
+^d[ 0-9a-zA-Z\:\-]*Unclassification$|\
+^d[ 0-9a-zA-Z\:\-]*.git$|\
 ^d[ 0-9a-zA-Z\:\-]*.script$|\
 run-classify.sh$|\
 pics.data$/d" >> ./pics.data;
