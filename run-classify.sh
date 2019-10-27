@@ -144,7 +144,7 @@ if [ "$cmd_debug_test2" = "" ]; then
 	cmd_debug_test2="normal";
 fi
 
-filelist=`tempfile -p fio`
+filelist_path=`tempfile -p fio`
 echo $file_type - $file_sub_type - $cmd_debug_test1 - $cmd_debug_test2;
 echo $file_sub_type $cmd_debug_test1 $cmd_debug_test2 $cmd_regstr> ./pics.data;
 ls -l --time-style long-iso | sed -r "/^total [0-9]*$|\
@@ -157,26 +157,25 @@ ls -l --time-style long-iso | sed -r "/^total [0-9]*$|\
 ^d[ 0-9a-zA-Z\:\-]*Unclassification$|\
 ^d[ 0-9a-zA-Z\:\-]*.git$|\
 ^d[ 0-9a-zA-Z\:\-]*.script$|\
-run-classify.sh$|\
-pics.data$/d" >> ${filelist};
+run-classify.sh$/d" >> ${filelist_path};
 
 case "$file_type" in
 	pic)
 		case $file_sub_type in 
 			name)
-				awk -f ./Images/Camera/classify-photo-by-name.awk ./pics.data;
+				awk -f ./Images/Camera/classify-photo-by-name.awk ${filelist_path};
 				;;
 			createdtime)
-				awk -f ./Images/Camera/classify-photo-by-createdtime.awk ./pics.data;
+				awk -f ./Images/Camera/classify-photo-by-createdtime.awk ${filelist_path};
 				;;
 			wechat)
-				awk -f ./Images/WeiXin/classify-wechat-pic.awk ./pics.data;
+				awk -f ./Images/WeiXin/classify-wechat-pic.awk ${filelist_path};
 				;;
 			screenshot)
-				awk -f ./Images/Screenshots/classify-screenshot-pic.awk ./pics.data;
+				awk -f ./Images/Screenshots/classify-screenshot-pic.awk ${filelist_path};
 				;;
 			otherpic)
-				awk -f ./Images/OtherPics/classify-otherpics-pic.awk ./pics.data;
+				awk -f ./Images/OtherPics/classify-otherpics-pic.awk ${filelist_path};
 				;;
 			*)
 				;;
@@ -185,25 +184,25 @@ case "$file_type" in
 	file)
 		case $file_sub_type in
 			word)
-				awk -f ./Offices/Word/classify-word.awk ./pics.data;
+				awk -f ./Offices/Word/classify-word.awk ${filelist_path};
 				;;
 			excel)
-				awk -f ./Offices/Excel/classify-excel.awk ./pics.data;
+				awk -f ./Offices/Excel/classify-excel.awk ${filelist_path};
 				;;
 			ppt)
-				awk -f ./Offices/PPT/classify-ppt.awk ./pics.data;
+				awk -f ./Offices/PPT/classify-ppt.awk ${filelist_path};
 				;;
 			pdf)
-				awk -f ./Offices/PDF/classify-pdf.awk ./pics.data;
+				awk -f ./Offices/PDF/classify-pdf.awk ${filelist_path};
 				;;
 			music)
-				awk -f ./Music/classify-music.awk ./pics.data;
+				awk -f ./Music/classify-music.awk ${filelist_path};
 				;;
 			compressionfile)
-				awk -f ./Archives/classify-compressionfile.awk ./pics.data;
+				awk -f ./Archives/classify-compressionfile.awk ${filelist_path};
 				;;
 			text)
-				awk -f ./Texts/classify-text.awk ./pics.data;
+				awk -f ./Texts/classify-text.awk ${filelist_path};
 				;;
 			*)
 				;;
@@ -219,8 +218,8 @@ case "$file_type" in
 		;;
 esac
 
-if [ -f ${filelist} ]; then
-	rm ${filelist}
+if [ -f "${filelist_path}" ]; then
+	rm "${filelist_path}"
 fi
 
 exit 0;
