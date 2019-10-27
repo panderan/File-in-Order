@@ -40,7 +40,7 @@ Begin{
 	}
 
 	# Exclude pictures which have incorrect name.
-	if (system("echo "filename" | grep -i -P 'screenshot|超级截屏' > /dev/null")) {
+	if (system("echo "filename" | grep -i -P 'screenshot|截屏' > /dev/null")) {
 		printf("\033[33mNot a Screenshot Picture file\033[0m - "filename"\n");
 		next;
 	}
