@@ -105,14 +105,20 @@ Begin{
 	}
 
 	# Filename type 10: "DSC00449.JPG"
-	else if (!system("echo "filename" | grep -i -P '^DSC\\d{5,10}\\.jpg' > /dev/null")) {
+	else if (!system("echo "filename" | grep -i -P '^DSC\\d{5,10}' > /dev/null")) {
 		year=substr($6,1,4);
 		month=substr($6,6,2);
 		#printf("\033[32m"fileclass"\033[0m:"filename", "year"年"month"月\n");
 	}
 
 	# Filename type 11: "wx_camera_1234567898765.jpg"
-	else if (!system("echo "filename" | grep -i -P '^wx_camera_\\d{13}\\.jpg' > /dev/null")) {
+	else if (!system("echo "filename" | grep -i -P '^wx_camera_\\d{13}' > /dev/null")) {
+		year=substr($6,1,4);
+		month=substr($6,6,2);
+		#printf("\033[32m"fileclass"\033[0m:"filename", "year"年"month"月\n");
+	}
+	# Filename type 12: "wx_camera_1234567898765.jpg"
+	else if (!system("echo "filename" | grep -i -P '^faceu_\\d{14}' > /dev/null")) {
 		year=substr($6,1,4);
 		month=substr($6,6,2);
 		#printf("\033[32m"fileclass"\033[0m:"filename", "year"年"month"月\n");
