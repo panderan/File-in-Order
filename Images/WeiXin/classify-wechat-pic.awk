@@ -16,32 +16,32 @@ Begin{
 	}
 	else {
 		if (cmd_type != "wechat") {
-			printf("\033[31mError Cmd\033[0m, need \"wechat\" specified.\n");
+			printf(NR"/"total_files" \033[31mError Cmd\033[0m, need \"wechat\" specified.\n");
 			exit;
 		}
 	}
 
 	# Ignore directory file
 	if (system("! test -d "filename)) {
-		printf("\033[33mDirectory File or NULL\033[0m, Ignore - "filename"\n");
+		printf(NR"/"total_files" \033[33mDirectory File or NULL\033[0m, Ignore - "filename"\n");
 		next;
 	}
 	
 	# Verify the existence of source file
 	if (system("test -f "filename)) {
-		printf("\033[33mSource file is not found\033[0m - "filename"\n");
+		printf(NR"/"total_files" \033[33mSource file is not found\033[0m - "filename"\n");
 		next;
 	}
 
 	# Exclude formats which unsupported.
 	if (system("echo "filename" | grep -i -P '\\.jp[e]*g$|\\.gif$|\\.png$|\\.mp4$' > /dev/null")) {
-		printf("\033[33mNot a Picture or Video file\033[0m - "filename"\n");
+		printf(NR"/"total_files" \033[33mNot a Picture or Video file\033[0m - "filename"\n");
 		next;
 	}
 
 	# Exclude pictures which have incorrect name.
 	if (system("echo "filename" | grep -i -P '^microMsg|^mmexport|^wx_camera' > /dev/null")) {
-		printf("\033[33mNot a Wechat Picture file\033[0m - "filename"\n");
+		printf(NR"/"total_files" \033[33mNot a Wechat Picture file\033[0m - "filename"\n");
 		next;
 	}
 
@@ -56,6 +56,7 @@ Begin{
 	#}
 	
 	# Carry file
+    printf(NR"/"total_files" ");
 	if (!system("echo "filename" | grep -i -P '^microMsg[a-z0-9A-Z._\\-]*' > /dev/null")) {
 		system("./.script/porter.sh "filename" "datestr" microMsg ./Images/"fileclass" "cmd_debug" "cmd_debug2);
 	}

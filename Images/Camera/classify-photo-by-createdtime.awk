@@ -17,20 +17,20 @@ Begin{
 	}
 	else {
 		if (cmd_type != "createdtime") {
-			printf("\033[31mError Cmd\033[0m, need \"createdtime\" specified.\n");
+			printf(NR"/"total_files" \033[31mError Cmd\033[0m, need \"createdtime\" specified.\n");
 			exit;
 		}
 	}
 
 	# Ignore directory file
 	if (system("! test -d "filename)) {
-		printf("\033[33mDirectory File or NULL\033[0m, Ignore - "filename"\n");
+		printf(NR"/"total_files" \033[33mDirectory File or NULL\033[0m, Ignore - "filename"\n");
 		next;
 	}
 	
 	# Verify the existence of source file
 	if (system("test -f "filename)) {
-		printf("\033[33mSource file is not found\033[0m - "filename"\n");
+		printf(NR"/"total_files" \033[33mSource file is not found\033[0m - "filename"\n");
 		next;
 	}
 	
@@ -44,19 +44,19 @@ Begin{
 		month=substr($6, 6,2);
 	}
 	else {
-		printf("\033[33mNot a Camera file\033[0m : "filename"\n")
+		printf(NR"/"total_files" \033[33mNot a Camera file\033[0m : "filename"\n")
 		next;
 	}
 	
 	# Verify the file name.
 	if (system("echo "filename" | grep -i -P '"cmd_regstr"' > /dev/null")) {
-		printf("\033[33mFile name is not match the regular expression \033[0m : "filename" - /"cmd_regstr"/\n")
+		printf(NR"/"total_files" \033[33mFile name is not match the regular expression \033[0m : "filename" - /"cmd_regstr"/\n")
 		next;
 	}
 
 	# Verify the date of current picture. 
 	if (year < 0 || year > 3000 || month < 0 || month > 13) {
-		printf("\033[31mError Time\033[0m :"year"年"month"月\n");
+		printf(NR"/"total_files" \033[31mError Time\033[0m :"year"年"month"月\n");
 		next;
 	}
 	
@@ -67,7 +67,7 @@ Begin{
 			system("mkdir ./"dir_name);
 		}
 	}
-	
+    printf(NR"/"total_files" ");
 	system("./.script/fc_mv.sh "filename" "dir_name" "cmd_debug);
 }
 End {

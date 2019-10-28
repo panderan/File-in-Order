@@ -16,26 +16,26 @@ Begin{
 	}
 	else {
 		if (cmd_type != "music") {
-			printf("\033[31mError Cmd\033[0m, need \"music\" specified.\n");
+			printf(NR"/"total_files" \033[31mError Cmd\033[0m, need \"music\" specified.\n");
 			exit;
 		}
 	}
 
 	# Ignore directory file
 	if (system("! test -d "filename)) {
-		printf("\033[33mDirectory File or NULL\033[0m, Ignore - "filename"\n");
+		printf(NR"/"total_files" \033[33mDirectory File or NULL\033[0m, Ignore - "filename"\n");
 		next;
 	}
 	
 	# Verify the existence of source file
 	if (system("test -f "filename)) {
-		printf("\033[33mSource file is not found\033[0m - "filename"\n");
+		printf(NR"/"total_files" \033[33mSource file is not found\033[0m - "filename"\n");
 		next;
 	}
 
 	# Exclude formats which unsupported.
 	if (system("echo "filename" | grep -i -P '\\.mp3$|\\.wma$|\\.m4a$' > /dev/null")) {
-		printf("\033[33mNot a Music file\033[0m - "filename"\n");
+		printf(NR"/"total_files" \033[33mNot a Music file\033[0m - "filename"\n");
 		next;
 	}
 
@@ -49,6 +49,7 @@ Begin{
 		gsub(".wma","",name_prefix); gsub(".WMA","",name_prefix);
 		gsub(".m4a","",name_prefix); gsub(".M4A","",name_prefix);
 		#system("./.script/rename.sh "filename" "datestr" "name_prefix" "cmd_debug);
+        printf(NR"/"total_files" ");
 		system("./.script/porter.sh "filename" "datestr" "name_prefix" ./"fileclass" "cmd_debug" "cmd_debug2);
 	#}
 }

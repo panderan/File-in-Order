@@ -40,14 +40,9 @@ Begin{
 	}
 
 	# Rename and move picture.
+    printf(NR"/"total_files" ");
 	system("./.script/porter.sh "filename" "datestr" otherpic ./Images/"fileclass" "cmd_debug" "cmd_debug2);
 
-	#if (!system("echo "filename" | grep -i -P '^otherpic-\\d{4}-\\d{2}\\.\\w{8,32}' > /dev/null")) {
-	#	system("./.script/mv.sh "filename" ./"fileclass" "cmd_debug);
-	#}
-	#else {
-	#	system("./.script/rename.sh "filename" "datestr" otherpic "cmd_debug);
-	#}
 }
 End {
 }
