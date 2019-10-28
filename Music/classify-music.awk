@@ -34,7 +34,7 @@ Begin{
 	}
 
 	# Exclude formats which unsupported.
-	if (system("echo "filename" | grep -i -P '\\.mp3$|\\.wma$|\\.m4a$' > /dev/null")) {
+	if (system("echo "filename" | grep -i -P '\\.mp3$|\\.wma$|\\.m4a$|\\.amr$|\\.flac$' > /dev/null")) {
 		printf(NR"/"total_files" \033[33mNot a Music file\033[0m - "filename"\n");
 		next;
 	}
