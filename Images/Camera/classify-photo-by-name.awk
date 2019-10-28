@@ -123,6 +123,12 @@ Begin{
 		month=substr($6,6,2);
 		#printf(NR"/"total_files" \033[32m"fileclass"\033[0m:"filename", "year"年"month"月\n");
 	}
+	# Filename type 12: "wx_camera_1234567898765.jpg"
+	else if (!system("echo "filename" | grep -i -P '^video_\\d{8}_\\d{6}' > /dev/null")) {
+		year=substr(filename,7,4);
+		month=substr(filename,11,2);
+		#printf(NR"/"total_files" \033[32m"fileclass"\033[0m:"filename", "year"年"month"月\n");
+	}
 	else {
 		printf(NR"/"total_files" \033[35mNot match\033[0m - "filename"\n");
 		next;
