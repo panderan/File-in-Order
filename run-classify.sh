@@ -158,24 +158,25 @@ ls -l --time-style long-iso | sed -r "/^total [0-9]*$|\
 ^d[ 0-9a-zA-Z\:\-]*.git$|\
 ^d[ 0-9a-zA-Z\:\-]*.script$|\
 run-classify.sh$/d" >> ${filelist_path};
+total_files=`cat ${filelist_path} | wc -l`
 
 case "$file_type" in
 	pic)
 		case $file_sub_type in 
 			name)
-				awk -f ./Images/Camera/classify-photo-by-name.awk ${filelist_path};
+				awk -vtotal_files=${total_files} -f ./Images/Camera/classify-photo-by-name.awk ${filelist_path};
 				;;
 			createdtime)
-				awk -f ./Images/Camera/classify-photo-by-createdtime.awk ${filelist_path};
+				awk -vtotal_files=${total_files} -f ./Images/Camera/classify-photo-by-createdtime.awk ${filelist_path};
 				;;
 			wechat)
-				awk -f ./Images/WeiXin/classify-wechat-pic.awk ${filelist_path};
+				awk -vtotal_files=${total_files} -f ./Images/WeiXin/classify-wechat-pic.awk ${filelist_path};
 				;;
 			screenshot)
-				awk -f ./Images/Screenshots/classify-screenshot-pic.awk ${filelist_path};
+				awk -vtotal_files=${total_files} -f ./Images/Screenshots/classify-screenshot-pic.awk ${filelist_path};
 				;;
 			otherpic)
-				awk -f ./Images/OtherPics/classify-otherpics-pic.awk ${filelist_path};
+				awk -vtotal_files=${total_files} -f ./Images/OtherPics/classify-otherpics-pic.awk ${filelist_path};
 				;;
 			*)
 				;;
@@ -184,25 +185,25 @@ case "$file_type" in
 	file)
 		case $file_sub_type in
 			word)
-				awk -f ./Offices/Word/classify-word.awk ${filelist_path};
+				awk -vtotal_files=${total_files} -f ./Offices/Word/classify-word.awk ${filelist_path};
 				;;
 			excel)
-				awk -f ./Offices/Excel/classify-excel.awk ${filelist_path};
+				awk -vtotal_files=${total_files} -f ./Offices/Excel/classify-excel.awk ${filelist_path};
 				;;
 			ppt)
-				awk -f ./Offices/PPT/classify-ppt.awk ${filelist_path};
+				awk -vtotal_files=${total_files} -f ./Offices/PPT/classify-ppt.awk ${filelist_path};
 				;;
 			pdf)
-				awk -f ./Offices/PDF/classify-pdf.awk ${filelist_path};
+				awk -vtotal_files=${total_files} -f ./Offices/PDF/classify-pdf.awk ${filelist_path};
 				;;
 			music)
-				awk -f ./Music/classify-music.awk ${filelist_path};
+				awk -vtotal_files=${total_files} -f ./Music/classify-music.awk ${filelist_path};
 				;;
 			compressionfile)
-				awk -f ./Archives/classify-compressionfile.awk ${filelist_path};
+				awk -vtotal_files=${total_files} -f ./Archives/classify-compressionfile.awk ${filelist_path};
 				;;
 			text)
-				awk -f ./Texts/classify-text.awk ${filelist_path};
+				awk -vtotal_files=${total_files} -f ./Texts/classify-text.awk ${filelist_path};
 				;;
 			*)
 				;;
